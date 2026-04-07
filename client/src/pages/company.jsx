@@ -9,7 +9,7 @@ export default function Company() {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/companies`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL || ""}/api/companies`);
         setCompanies(res.data);
         setLoading(false);
       } catch (err) {
