@@ -12,7 +12,7 @@ const QuestionSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true, // e.g., "Software Development Engineer"
+    required: true, // jyadatar to "Software Development Engineer"
   },
   link: {
     type: String,
@@ -25,7 +25,7 @@ const QuestionSchema = new mongoose.Schema({
   },
   companies: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Company", // Bidirectional relation to Company
+    ref: "Company", // Bidirectional relation to Company 
   }]
 });
 

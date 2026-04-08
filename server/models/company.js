@@ -21,19 +21,18 @@ const CompanySchema = new mongoose.Schema({
   recruitmentRoles: [{
     type: String,
   }],
-  // Array of questions from the Question model entities
+  // Array of questions jarurat hai
   questions: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Question",
   }],
   averagePackage: {
-    type: Number, // Storing package in LPA (Lakhs Per Annum) for analytics
+    type: Number,
   },
   noOfStudentsPlaced: {
     type: Number,
     default: 0,
   },
-  // Mongoose needs Array of Number, not Float32Array explicitly
   allOffers: [{
     type: Number,
     default: 0,

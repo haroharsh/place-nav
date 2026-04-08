@@ -26,7 +26,7 @@ export default function Home() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginTop: '30px' }}>
         
-        {/* Explore Companies Card */}
+        {/* Companies Card */}
         <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ padding: '15px', background: 'var(--primary-light)', borderRadius: '16px', width: 'fit-content', color: 'var(--primary-accent)' }}>
             <FiBriefcase size={28} />
@@ -42,7 +42,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Interview Questions Card */}
+        {/* Questions Card */}
         <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ padding: '15px', background: 'var(--highlight-orange)', borderRadius: '16px', width: 'fit-content', color: 'var(--highlight-orange-text)' }}>
             <FiFileText size={28} />
@@ -58,7 +58,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Placement Analytics Card */}
+        {/* Analytics Card */}
         <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <div style={{ padding: '15px', background: 'var(--highlight-yellow)', borderRadius: '16px', width: 'fit-content', color: 'var(--highlight-yellow-text)' }}>
             <FiBarChart2 size={28} />

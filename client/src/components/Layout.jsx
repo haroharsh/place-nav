@@ -36,7 +36,6 @@ const Layout = ({ children }) => {
 
   return (
     <div className="dashboard-layout">
-      {/* Sidebar Navigation */}
       <aside className="sidebar">
         <div className="sidebar-logo">
           Placement-Navigator
@@ -78,9 +77,6 @@ const Layout = ({ children }) => {
         </nav>
 
         <div className="sidebar-footer">
-          <button className="nav-item" style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', width: '100%' }}>
-            <FiHelpCircle /> Support
-          </button>
           <button onClick={handleLogout} className="nav-item" style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', width: '100%' }}>
             <FiLogOut /> Sign Out
           </button>
@@ -89,14 +85,12 @@ const Layout = ({ children }) => {
 
       {/* Main Content Area */}
       <main className="main-content">
-        {/* Top bar with Breadcrumbs & Actions */}
         <header className="top-bar">
           <div className="top-bar-nav">
             <span className="top-bar-link active">{getPageTitle()}</span>
           </div>
           
           <div className="top-bar-actions">
-            {/* Nav actions removed per user request */}
           </div>
         </header>
 
