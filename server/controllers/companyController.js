@@ -1,5 +1,5 @@
 const Company = require("../models/company");
-const Question = require("../models/question"); // Required for .populate("questions") to work
+const Question = require("../models/question");
 exports.getCompanies = async (req, res) => {
   try {
     const companies = await Company.find().select("-questions");
@@ -22,6 +22,17 @@ exports.getCompanyDetails = async (req, res) => {
     if (err.kind === "ObjectId") {
       return res.status(404).json({ msg: "Company not found" });
     }
+    res.status(500).send("Server Error");
+  }
+};
+
+exports.addCompany = async (req, res) => {
+  try {
+    const newCompany = new Company(req.body);
+    const company = await newCompany.save();
+    res.json(company);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 };

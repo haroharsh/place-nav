@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { getCompanies, getCompanyDetails } = require("../controllers/companyController");
+const { getCompanies, getCompanyDetails, addCompany } = require("../controllers/companyController");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/adminAuth");
 
-// @route   GET api/companies
-// @desc    Get all companies
-// @access  Public (or update with auth middleware if needed)
+// Company Routing made easy
 router.get("/", getCompanies);
 
-// @route   GET api/companies/:id
-// @desc    Get company details with questions
-// @access  Public
+router.post("/", [auth, admin], addCompany);
+
 router.get("/:id", getCompanyDetails);
 
 module.exports = router;

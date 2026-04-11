@@ -25,8 +25,12 @@ const QuestionSchema = new mongoose.Schema({
   },
   companies: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Company", // Bidirectional relation to Company 
-  }]
+    ref: "Company",
+  }],
+  solution: {
+    type: { type: String, enum: ["text", "pdf"] },
+    content: String
+  }
 });
 
 module.exports = mongoose.model("Question", QuestionSchema);

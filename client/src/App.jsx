@@ -6,6 +6,9 @@ import Company from "./pages/company";
 import CompanyDetail from "./pages/company-detail";
 import CompanyAnalytics from "./pages/company-analytics";
 import CompanyQuestion from "./pages/company-question";
+import AdminPanel from "./pages/admin-panel";
+import AddCompany from "./pages/add-company";
+import AddQuestion from "./pages/add-question";
 import Layout from "./components/Layout";
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
         <Route path="/company/:id" element={<Layout><CompanyDetail /></Layout>} />
         <Route path="/company-analytics" element={<Layout><CompanyAnalytics /></Layout>} />
         <Route path="/company-question" element={<Layout><CompanyQuestion /></Layout>} />
+        <Route path="/admin" element={<Layout><AdminPanel /></Layout>} />
+        <Route path="/admin/add-company" element={<Layout><AddCompany /></Layout>} />
+        <Route path="/admin/add-question" element={<Layout><AddQuestion /></Layout>} />
       </Routes>
     </Router>
   );

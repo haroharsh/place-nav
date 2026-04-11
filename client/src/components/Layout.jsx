@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { FiHome, FiBriefcase, FiFileText, FiBarChart2, FiSearch, FiBell, FiSettings, FiHelpCircle, FiLogOut } from 'react-icons/fi';
+import { FiHome, FiBriefcase, FiFileText, FiBarChart2, FiSearch, FiBell, FiSettings, FiHelpCircle, FiLogOut, FiShield } from 'react-icons/fi';
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userName, setUserName] = useState("Original name from database");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const userStr = localStorage.getItem("user");
@@ -13,6 +14,7 @@ const Layout = ({ children }) => {
       try {
         const user = JSON.parse(userStr);
         if (user && user.name) setUserName(user.name);
+        if (user && user.role === 'admin') setIsAdmin(true);
       } catch (e) {
         console.error("Failed to parse user");
       }
@@ -20,7 +22,8 @@ const Layout = ({ children }) => {
   }, []);
 
   const handleLogout = () => {
-    // Basic logout handling for now
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate('/');
   };
 
@@ -31,6 +34,7 @@ const Layout = ({ children }) => {
     if (path.includes('/company-question')) return 'Interview Questions';
     if (path.includes('/company')) return 'Companies';
     if (path.includes('/home')) return 'Overview';
+    if (path.includes('/admin')) return 'Admin Control Center';
     return 'Dashboard';
   };
 
@@ -45,7 +49,7 @@ const Layout = ({ children }) => {
           <div className="profile-img">{userName.charAt(0).toUpperCase()}</div>
           <div className="profile-info">
             <h4>{userName}</h4>
-            <span>B.Tech CSE</span>
+            <span>{isAdmin ? 'Administrator' : 'B.Tech CSE'}</span>
           </div>
         </div>
 
@@ -74,6 +78,16 @@ const Layout = ({ children }) => {
           >
             <FiBarChart2 /> Analytics
           </NavLink>
+
+          {isAdmin && (
+            <NavLink 
+              to="/admin" 
+              className={({ isActive }) => `nav-item admin-nav ${isActive ? 'active' : ''}`}
+              style={{ marginTop: 'auto', background: 'rgba(255, 107, 107, 0.1)', color: '#ff6b6b' }}
+            >
+              <FiShield /> Admin Panel
+            </NavLink>
+          )}
         </nav>
 
         <div className="sidebar-footer">
