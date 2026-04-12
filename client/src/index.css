@@ -14,6 +14,22 @@
   --highlight-orange-text: #C36733;
 }
 
+.dark {
+  --bg-primary: #0D1117;
+  --bg-card: #161B22;
+  --text-main: #E6EDF3;
+  --text-muted: #8B949E;
+  --primary-accent: #FF7B72;
+  --primary-light: #2D1A1A;
+  --border-color: #30363D;
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  --highlight-yellow: #2D2B1A;
+  --highlight-yellow-text: #F0B763;
+  --highlight-orange: #2D1D15;
+  --highlight-orange-text: #F27A52;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -105,7 +121,7 @@ body {
 }
 
 .nav-item:hover {
-  background-color: rgba(0,0,0,0.02);
+  background-color: rgba(255, 255, 255, 0.03);
   color: var(--text-main);
 }
 
@@ -213,7 +229,7 @@ body {
   border-radius: 24px;
   padding: 24px;
   box-shadow: var(--card-shadow);
-  border: 1px solid rgba(0,0,0,0.02);
+  border: 1px solid var(--border-color);
 }
 
 .page-header {

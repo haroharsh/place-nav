@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { FiHome, FiBriefcase, FiFileText, FiBarChart2, FiSearch, FiBell, FiSettings, FiHelpCircle, FiLogOut, FiShield } from 'react-icons/fi';
+import { FiHome, FiBriefcase, FiFileText, FiBarChart2, FiSearch, FiBell, FiSettings, FiHelpCircle, FiLogOut, FiShield, FiSun, FiMoon } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const [userName, setUserName] = useState("Original name from database");
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -105,10 +107,17 @@ const Layout = ({ children }) => {
           </div>
           
           <div className="top-bar-actions">
+            <div 
+              className="action-icon theme-toggle" 
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}
+            >
+              {theme === 'light' ? <FiMoon /> : <FiSun />}
+            </div>
           </div>
         </header>
 
-        {/* Dynamic Page Content */}
         <div className="page-content">
           {children}
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import InteractiveDots from "../components/InteractiveDots";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -45,7 +46,7 @@ export default function Signup() {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          font-family: "Poppins", sans-serif;
+          font-family: 'Inter', 'Poppins', sans-serif;
         }
 
         section {
@@ -56,115 +57,102 @@ export default function Signup() {
           width: 100%;
           height: 100vh;
           overflow: hidden;
+          background: transparent;
         }
 
-        .bg, .trees {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          pointer-events: none;
-        }
-
-        .trees {
-          z-index: 100;
-        }
-
-        .girl {
-          position: absolute;
-          scale: 0.65;
-          animation: animateGirl 10s linear infinite;
-        }
-
-        @keyframes animateGirl {
-          0% { transform: translateX(100vw); }
-          50% { transform: translateX(-100vw); }
-          100% { transform: translateX(100vw) rotateY(180deg); }
-        }
-
-        .login {
+        .signup-card {
           position: relative;
-          padding: 60px;
-          background: rgba(255,255,255,0.25);
-          backdrop-filter: blur(15px);
-          border-radius: 20px;
-          width: 400px;
+          padding: 50px 40px;
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(25px);
+          -webkit-backdrop-filter: blur(25px);
+          border-radius: 30px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          width: 100%;
+          max-width: 420px;
           display: flex;
           flex-direction: column;
-          gap: 20px;
-          box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+          gap: 30px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+          z-index: 10;
         }
 
-        .login h2 {
+        .signup-card h2 {
           text-align: center;
-          font-size: 2em;
-          color: #8f2c24;
+          font-size: 2.2rem;
+          font-weight: 700;
+          color: #fff;
+          letter-spacing: -0.5px;
+        }
+
+        .inputBox {
+          position: relative;
+          width: 100%;
         }
 
         .inputBox input {
           width: 100%;
-          padding: 12px;
-          font-size: 1em;
-          border-radius: 5px;
-          border: none;
-          margin-bottom: 10px;
+          padding: 15px 20px;
+          font-size: 1rem;
+          border-radius: 15px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+          color: #fff;
+          outline: none;
+          transition: 0.3s;
+          margin-bottom: 20px;
+        }
+
+        .inputBox input:focus {
+          border-color: #fff;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .inputBox input::placeholder {
+          color: rgba(255, 255, 255, 0.4);
         }
 
         #btn {
-          background: #8f2c24;
-          color: #fff;
+          background: #fff;
+          color: #000;
+          font-weight: 600;
           cursor: pointer;
+          border: none;
           transition: 0.3s;
+          margin-top: 10px;
         }
 
         #btn:hover {
-          background: #d64c42;
+          background: rgba(255, 255, 255, 0.9);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        #btn:active {
+          transform: translateY(0);
         }
 
         .group {
-          display: flex;
-          justify-content: space-between;
+          text-align: center;
+          font-size: 0.9rem;
         }
 
         .group a {
-          color: #8f2c24;
+          color: rgba(255, 255, 255, 0.6);
           text-decoration: none;
+          transition: 0.3s;
         }
 
-        .leaves .set div {
-          position: absolute;
-          animation: fall 10s linear infinite;
-        }
-
-        @keyframes fall {
-          0% { top: -10%; opacity: 0; }
-          100% { top: 110%; opacity: 1; }
+        .group a:hover {
+          color: #fff;
         }
       `}</style>
 
       <section>
-        <div className="leaves">
-          <div className="set">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} style={{ left: `${i * 10}%` }}>
-                <img
-                  src={`/images/leaf_0${(i % 4) + 1}.png`}
-                  alt=""
-                  width="50"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <img src="/images/bg.jpg" className="bg" alt="" />
-        <img src="/images/girl.png" className="girl" alt="" />
-        <img src="/images/trees.png" className="trees" alt="" />
-
-        <div className="login">
-          <h2>Sign Up</h2>
+        <InteractiveDots />
+        
+        <div className="signup-card">
+          <h2>Create Account</h2>
 
           <form onSubmit={handleSubmit}>
             <div className="inputBox">
@@ -178,7 +166,7 @@ export default function Signup() {
                 required
               />
             </div>
-          
+
             <div className="inputBox">
               <input
                 type="text"
@@ -204,7 +192,7 @@ export default function Signup() {
             </div>
 
             <div className="inputBox">
-              <input type="submit" value="Register" id="btn" />
+              <input type="submit" value="Sign Up" id="btn" />
             </div>
           </form>
 
