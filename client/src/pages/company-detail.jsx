@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { FiArrowLeft, FiBriefcase, FiDollarSign, FiUsers, FiTag, FiFileText } from "react-icons/fi";
+import { FiArrowLeft, FiBriefcase, FiDollarSign, FiUsers, FiFileText } from "react-icons/fi";
+import SleekSpinner from "../components/SleekSpinner";
 
 export default function CompanyDetail() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ export default function CompanyDetail() {
   }, [id]);
 
   if (loading) {
-    return <div style={{ padding: '50px', textAlign: 'center', color: 'var(--text-muted)' }}>Loading details...</div>;
+    return <SleekSpinner />;
   }
 
   if (!company) {

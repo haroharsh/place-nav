@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FiFilter, FiSearch, FiMessageSquare, FiBookOpen, FiPlus, FiX, FiExternalLink } from "react-icons/fi";
+import SleekSpinner from "../components/SleekSpinner";
 
 export default function CompanyQuestion() {
   const [questions, setQuestions] = useState([]);
@@ -80,7 +81,7 @@ export default function CompanyQuestion() {
       </div>
 
       {loading ? (
-        <div style={{ padding: '50px', textAlign: 'center', color: 'var(--text-muted)' }}>Loading all question data...</div>
+        <SleekSpinner />
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '30px' }}>
           {questions.map((q) => (

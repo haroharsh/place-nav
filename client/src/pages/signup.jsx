@@ -9,6 +9,7 @@ export default function Signup() {
     email: "",
     password: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
 
@@ -21,10 +22,11 @@ export default function Signup() {
     e.preventDefault();
 
     if (!isValidJUITEmail(form.email)) {
-      alert("Use valid JUIT email (start ≥2, @juitsolan.in)");
+      alert("Use valid JUIT email (start >=2, @juitsolan.in)");
       return;
     }
 
+    setIsLoading(true);
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL || ""}/api/auth/register`,
@@ -36,6 +38,8 @@ export default function Signup() {
 
     } catch (err) {
       alert(err.response?.data?.msg || "Error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -132,6 +136,29 @@ export default function Signup() {
           transform: translateY(0);
         }
 
+        #btn:disabled {
+          background: rgba(255, 255, 255, 0.4);
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        .spinner {
+          width: 20px;
+          height: 20px;
+          border: 3px solid rgba(0,0,0,0.1);
+          border-top: 3px solid #000;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
         .group {
           text-align: center;
           font-size: 0.9rem;
@@ -192,7 +219,16 @@ export default function Signup() {
             </div>
 
             <div className="inputBox">
-              <input type="submit" value="Sign Up" id="btn" />
+              <button type="submit" id="btn" disabled={isLoading} style={{ width: '100%', padding: '15px', borderRadius: '15px' }}>
+                {isLoading ? (
+                  <>
+                    <span className="spinner"></span>
+                    Creating Account...
+                  </>
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
             </div>
           </form>
 

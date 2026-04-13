@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FiTrendingUp, FiUsers, FiMapPin, FiClock } from "react-icons/fi";
+import { FiTrendingUp, FiUsers, FiMapPin } from "react-icons/fi";
+import SleekSpinner from "../components/SleekSpinner";
 
 export default function Company() {
   const [companies, setCompanies] = useState([]);
@@ -34,7 +35,7 @@ export default function Company() {
       </div>
 
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '50px', color: 'var(--text-muted)' }}>Loading companies...</div>
+        <SleekSpinner />
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '25px', marginTop: '20px' }}>
           {companies.map((company, i) => (

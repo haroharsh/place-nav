@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft, FiSave, FiCheckCircle } from "react-icons/fi";
+import SleekSpinner from "../components/SleekSpinner";
 
 export default function AddQuestion() {
   const navigate = useNavigate();
@@ -145,7 +146,7 @@ export default function AddQuestion() {
 
           <div className="form-group">
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>Select Companies (at least one) *</label>
-            {fetching ? <p>Loading companies...</p> : (
+            {fetching ? <SleekSpinner /> : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px', maxHeight: '200px', overflowY: 'auto', padding: '10px', border: '1px solid var(--border-color)', borderRadius: '8px' }}>
                 {allCompanies.map(company => (
                   <div 
@@ -177,8 +178,29 @@ export default function AddQuestion() {
             disabled={loading}
             style={{ padding: '15px', background: 'var(--primary-accent)', color: 'white', border: 'none', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '10px' }}
           >
-            {loading ? "Saving..." : <><FiSave /> Save Question</>}
+            {loading ? (
+              <>
+                <div className="spinner-white"></div>
+                Saving...
+              </>
+            ) : (
+              <><FiSave /> Save Question</>
+            )}
           </button>
+          <style>{`
+            .spinner-white {
+              width: 18px;
+              height: 18px;
+              border: 2px solid rgba(255,255,255,0.3);
+              border-top: 2px solid white;
+              border-radius: 50%;
+              animation: spin 0.8s linear infinite;
+            }
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
         </form>
       </div>
     </div>

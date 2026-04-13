@@ -9,11 +9,30 @@ import CompanyQuestion from "./pages/company-question";
 import AdminPanel from "./pages/admin-panel";
 import AddCompany from "./pages/add-company";
 import AddQuestion from "./pages/add-question";
+import axios from "axios";
+import ProgressBar from "./components/ProgressBar";
 import Layout from "./components/Layout";
+
+axios.interceptors.request.use(config => {
+  window.dispatchEvent(new CustomEvent('loading-start'));
+  return config;
+}, error => {
+  window.dispatchEvent(new CustomEvent('loading-stop'));
+  return Promise.reject(error);
+});
+
+axios.interceptors.response.use(response => {
+  window.dispatchEvent(new CustomEvent('loading-stop'));
+  return response;
+}, error => {
+  window.dispatchEvent(new CustomEvent('loading-stop'));
+  return Promise.reject(error);
+});
 
 function App() {
   return (
     <Router>
+      <ProgressBar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
