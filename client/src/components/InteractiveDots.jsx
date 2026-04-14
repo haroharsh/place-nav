@@ -12,7 +12,7 @@ const InteractiveDots = () => {
 
         const spacing = 35;
         const radius = 1.5;
-        const impactRadius = 120;
+        const impactRadius = 180;
 
         const initDots = () => {
             dots.current = [];
@@ -47,12 +47,13 @@ const InteractiveDots = () => {
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
                 let currentRadius = dot.baseRadius;
-                let opacity = 0.12;
+                let opacity = 0.08; // Base opacity
 
                 if (distance < impactRadius) {
                     const factor = (1 - distance / impactRadius);
-                    currentRadius = dot.baseRadius + factor * 2;
-                    opacity = 0.12 + factor * 0.7;
+                    const powerFactor = Math.pow(factor, 2); // Exponential growth
+                    currentRadius = dot.baseRadius + powerFactor * 10; // Enlarges by 10px
+                    opacity = 0.08 + powerFactor * 0.92; // Brightness up to 1.0
                 }
 
                 ctx.beginPath();
